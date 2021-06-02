@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
@@ -39,11 +39,16 @@ return Number(precision);
             <p> Total Price:{formatNumber(total + shipping)}</p>
        <br/>
       
-      <Link to="/review">
+      {/* <Link to="/review">
       <button className="mine-button">Review Order
 
 </button>
-      </Link>
+      </Link> */}
+{
+
+    props.children
+}
+
         </div>
     );
 };

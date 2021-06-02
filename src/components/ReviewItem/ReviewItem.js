@@ -18,7 +18,7 @@ const reviewItemStyle ={
             <p><small>${price}</small></p>
       <br/>
       <button 
-      className="main-button" 
+      className="mine-button" 
       onClick={ () => props.removeProduct(key)}
       >Remove</button>
         </div>
