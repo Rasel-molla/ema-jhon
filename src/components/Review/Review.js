@@ -4,6 +4,7 @@ import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 import happyImage  from '../../images/giphy.gif';
+import { useHistory } from 'react-router';
 
 
 
@@ -12,12 +13,18 @@ const Review = () => {
     const[cart , setCart ]= useState([]);
  const [orderPlaced,setOrderPlaced] = useState(false);
 
+ const history = useHistory();
 
 
-const handleAddOrder = () =>{
-  setCart([]);
-  setOrderPlaced(true);
-  clearLocalShoppingCart();
+
+const handleProceedCheckout = () =>{
+ 
+ history.push('/shipment');
+ 
+ 
+  // setCart([]);
+  // setOrderPlaced(true);
+  // clearLocalShoppingCart();
 }
 
     
@@ -68,10 +75,9 @@ thankyou
 <Cart cart={cart}>
 
   <button 
-  onClick={handleAddOrder}
+  onClick={handleProceedCheckout}
   className="mine-button">
-Place Order
-  </button>
+Proceed Checkout  </button>
 </Cart>
 </div>
 

@@ -12,13 +12,26 @@ import Review from './components/Review/Review';
 import Inventory from './components/Invebtory/Inventory';
 import Notfount from './components/Notfount/Notfount';
 import Productdtls from './components/ProductDtels/Productdtls';
+import Login from './components/Login/Login';
+import Shipment from './components/Shipment/Shipment';
+import { createContext, useState } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
+
+export const UserContext = createContext();
+
 
 function App() {
+
+  const [loggedINUser,setLoggedInUser] = useState({});
+
   return (
-    <div >
-    <Heder></Heder>
-  
+    <UserContext.Provider value={[loggedINUser,setLoggedInUser]} >
+    <h3> Login your Email:{loggedINUser.email}</h3>
+
+    
       <Router>
+      <Heder></Heder>
         <Switch>
 
           <Route path="/shop">
@@ -30,6 +43,15 @@ function App() {
           <Route path="/inventory">
 <Inventory></Inventory>
           </Route>
+          <Route path="/login">
+<Login></Login>
+          </Route>
+          <PrivateRoute path="/shipment">
+
+<Shipment></Shipment>
+</PrivateRoute>
+
+          
           <Route exact path="/">
 <Shop></Shop>
           </Route>
@@ -47,7 +69,7 @@ function App() {
   
 
   
-    </div>
+    </UserContext.Provider>
   );
 }
 
