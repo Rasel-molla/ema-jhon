@@ -1,10 +1,31 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { UserContext } from '../../App';
+import './Shipnents.css';
 const Shipment = () => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
+  const [loggedINUser,setLoggedInUser ] = useContext(UserContext);
+
+    console.log(watch("example")); // watch input value by passing the name of it
+  
     return (
-        <div>
-            <h1>This is Shipment </h1>
-        </div>
+      <form className="ship-form " onSubmit={handleSubmit(onSubmit)}>
+        {/* <input defaultValue="test" {...register("example")} /> */}
+        <input defaultValue={loggedINUser.name} {...register("name", { required: true })} placeholder="Your name" />
+        {errors.name && <span className="error">name is required</span>}
+ 
+        <input defaultValue={loggedINUser.email} {...register("email", { required: true })} placeholder="Your email" />
+        {errors.email && <span className="error">email is required</span>}
+    
+        <input {...register("address", { required: true })} placeholder="Your address" />
+        {errors.address && <span className="error">address is required</span>}
+      
+        <input {...register("phone", { required: true })}  placeholder="Your phone" />
+        {errors.phone && <span className="error">phone is required</span>}
+      
+        <input type="submit" />
+      </form>
     );
 };
 
